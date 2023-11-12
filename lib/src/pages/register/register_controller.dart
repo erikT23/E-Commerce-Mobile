@@ -1,3 +1,5 @@
+import 'package:ecomerce_mobile/src/models/user.dart';
+import 'package:ecomerce_mobile/src/providers/users_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +11,9 @@ class RegisterController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  void register() {
+  UsersProviders usersProviders = UsersProviders();
+
+  void register() async {
     String email = emailController.text.trim();
     String name = nameController.text;
     String lastname = lastnameController.text;
@@ -21,6 +25,17 @@ class RegisterController extends GetxController {
     print('Password: $password');
 
     if (isValidForm(email, name, lastname, phone, password, confirmPassword)) {
+      User user = User(
+        name: name,
+        lastName: lastname,
+        password: password,
+        email: email,
+        phoneNumber: phone,
+      );
+
+      Response response = await usersProviders.create(user);
+      print('Response ${response.body}');
+
       Get.snackbar('Formulario valido', 'El formulario es valido',
           colorText: Colors.white, backgroundColor: Colors.green);
     }
@@ -54,6 +69,12 @@ class RegisterController extends GetxController {
 
     if (phone.isEmpty) {
       Get.snackbar('Formulario no valido', 'El teléfono es requerido',
+          colorText: Colors.white, backgroundColor: Colors.red);
+      return false;
+    }
+
+    if (phone.length < 10) {
+      Get.snackbar('Formulario no valido', 'El teléfono tiene que ser de 10 dígitos',
           colorText: Colors.white, backgroundColor: Colors.red);
       return false;
     }
