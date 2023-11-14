@@ -73,7 +73,7 @@ class User {
         requestResetPassword: json["requestResetPassword"],
         updatedAt: json["updatedAt"],
         createdAt: json["createdAt"],
-        token: json["token"]["token"],
+        token: json["token"]?["token"],
       );
 
   Map<String, dynamic> toJson() => {

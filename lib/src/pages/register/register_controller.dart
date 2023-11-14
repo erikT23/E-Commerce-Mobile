@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:ecomerce_mobile/src/models/user.dart';
 import 'package:ecomerce_mobile/src/providers/users_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -12,6 +15,8 @@ class RegisterController extends GetxController {
   TextEditingController confirmPasswordController = TextEditingController();
 
   UsersProviders usersProviders = UsersProviders();
+  ImagePicker imagePicker = ImagePicker();
+  File? imageFile;
 
   void register() async {
     String email = emailController.text.trim();
@@ -74,7 +79,8 @@ class RegisterController extends GetxController {
     }
 
     if (phone.length < 10) {
-      Get.snackbar('Formulario no valido', 'El teléfono tiene que ser de 10 dígitos',
+      Get.snackbar(
+          'Formulario no valido', 'El teléfono tiene que ser de 10 dígitos',
           colorText: Colors.white, backgroundColor: Colors.red);
       return false;
     }
@@ -99,5 +105,48 @@ class RegisterController extends GetxController {
     }
 
     return true;
+  }
+
+  Future selectImage(ImageSource source) async {
+    XFile? image = await imagePicker.pickImage(source: source);
+    if (image != null) {
+      imageFile = File(image.path);
+      update();
+    }
+  }
+
+  void showAlertDialog(BuildContext context) {
+    Widget galleryButton = ElevatedButton(
+      child: const Text(
+        'Galeria',
+        style: TextStyle(color: Colors.white),
+      ),
+      onPressed: () {
+        Get.back();
+        selectImage(ImageSource.gallery);
+      },
+    );
+
+    Widget cameraButton = ElevatedButton(
+      child: const Text(
+        'Camara',
+        style: TextStyle(color: Colors.white),
+      ),
+      onPressed: () {
+        Get.back();
+        selectImage(ImageSource.camera);
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: const Text('Selecciona una opción'),
+      content: const Text('¿De donde quieres tomar la foto?'),
+      actions: [
+        galleryButton,
+        cameraButton,
+      ],
+    );
+
+    showDialog(context: context, builder: (BuildContext context) => alert);
   }
 }

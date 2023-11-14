@@ -4,6 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Nesecito permisos para acceder a la galeria de fotos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Nesecito permisos para acceder a la camara</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Nesecito permisos para acceder al microfono</string>
 	<key>CFBundleDisplayName</key>
 	<string>Ecomerce Mobile</string>
 	<key>CFBundleExecutable</key>
