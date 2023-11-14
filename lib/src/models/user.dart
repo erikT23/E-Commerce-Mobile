@@ -28,6 +28,7 @@ class User {
   String? requestResetPassword;
   String? updatedAt;
   String? createdAt;
+  String? token;
 
   User({
     this.id,
@@ -49,6 +50,7 @@ class User {
     this.requestResetPassword,
     this.updatedAt,
     this.createdAt,
+    this.token,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -59,8 +61,8 @@ class User {
         lastName: json["lastName"],
         password: json["password"],
         profilePicture: json["profilePicture"],
-        roleId: json["roleId"],
-        role: json["role"],
+        roleId: json["roleId"].toString(),
+        role: json["role"].toString(),
         buyerProfile: json["buyerProfile"],
         sellerProfile: json["sellerProfile"],
         courierProfile: json["courierProfile"],
@@ -71,6 +73,7 @@ class User {
         requestResetPassword: json["requestResetPassword"],
         updatedAt: json["updatedAt"],
         createdAt: json["createdAt"],
+        token: json["token"]["token"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -93,5 +96,6 @@ class User {
         "requestResetPassword": requestResetPassword,
         "updatedAt": updatedAt,
         "createdAt": createdAt,
+        "token": token,
       };
 }

@@ -9,10 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   get: ^4.6.6
   cupertino_icons: ^1.0.6
   flutter_custom_clippers: ^2.1.0
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:
