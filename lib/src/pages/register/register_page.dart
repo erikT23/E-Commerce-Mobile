@@ -12,8 +12,8 @@ class RegisterPage extends StatelessWidget {
       body: Stack(
         children: [
           _backgroundCover(context),
-          SingleChildScrollView(child: _boxForm(context)),
-          _buttonRegister(),
+          _boxForm(context),
+          _buttonRegister(context),
           _imageUser(context),
           _buttonBack(),
         ],
@@ -74,6 +74,7 @@ class RegisterPage extends StatelessWidget {
             _textFieldPhone(),
             _textFielPassword(),
             _textFielConfirmPassword(),
+            _buttonRegister(context)
           ],
         ),
       ),
@@ -170,12 +171,12 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Widget _buttonRegister() {
+  Widget _buttonRegister(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(top: 630, left: 20, right: 20),
       child: ElevatedButton(
-        onPressed: () => registerController.register(),
+        onPressed: () => registerController.register(context),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
           shape: RoundedRectangleBorder(
@@ -208,19 +209,18 @@ class RegisterPage extends StatelessWidget {
         margin: const EdgeInsets.only(top: 20),
         alignment: Alignment.topCenter,
         child: GestureDetector(
-          onTap: () => registerController.showAlertDialog(context),
-          child: GetBuilder<RegisterController>(
-            builder: (value) => CircleAvatar(
-            backgroundImage: registerController.imageFile != null
-                ? FileImage(registerController.imageFile!)
-                : const AssetImage(
-                    'assets/img/register.png',
-                  ) as ImageProvider,
-            radius: 60,
-            backgroundColor: Colors.white,
-          ),
-          )
-        ),
+            onTap: () => registerController.showAlertDialog(context),
+            child: GetBuilder<RegisterController>(
+              builder: (value) => CircleAvatar(
+                backgroundImage: registerController.imageFile != null
+                    ? FileImage(registerController.imageFile!)
+                    : const AssetImage(
+                        'assets/img/register.png',
+                      ) as ImageProvider,
+                radius: 60,
+                backgroundColor: Colors.white,
+              ),
+            )),
       ),
     );
   }

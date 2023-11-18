@@ -5,6 +5,7 @@ import 'package:ecomerce_mobile/src/providers/users_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class RegisterController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -18,7 +19,7 @@ class RegisterController extends GetxController {
   ImagePicker imagePicker = ImagePicker();
   File? imageFile;
 
-  void register() async {
+  void register(BuildContext context) async {
     String email = emailController.text.trim();
     String name = nameController.text;
     String lastname = lastnameController.text;
@@ -30,6 +31,10 @@ class RegisterController extends GetxController {
     print('Password: $password');
 
     if (isValidForm(email, name, lastname, phone, password, confirmPassword)) {
+
+      ProgressDialog progressDialog = ProgressDialog(context: context);
+      progressDialog.show(max: 400, msg: '🔧Creando usuario...');
+
       User user = User(
         name: name,
         lastName: lastname,
@@ -41,8 +46,16 @@ class RegisterController extends GetxController {
       Response response = await usersProviders.create(user);
       print('Response ${response.body}');
 
-      Get.snackbar('Formulario valido', 'El formulario es valido',
+      if(response.isOk){
+        progressDialog.close();
+        Get.snackbar('Formulario valido', 'El formulario es valido',
           colorText: Colors.white, backgroundColor: Colors.green);
+      }
+      else{
+        Get.snackbar('Formulario no valido', 'El formulario no es valido',
+          colorText: Colors.white, backgroundColor: Colors.red);
+      }
+      
     }
   }
 
@@ -150,3 +163,22 @@ class RegisterController extends GetxController {
     showDialog(context: context, builder: (BuildContext context) => alert);
   }
 }
+
+
+// Stream stream = await usersProviders.createWidthImage(user, imageFile!);
+//       stream.listen((response) {
+
+//         ResponseApi responseApi = ResponseApi.fromJson(json.decode(response));
+
+//         if (responseApi.success == true) {
+//           GetStorage().write(
+//             'user', responseApi.data); // Guardar el usuario en el local storage
+//         GoToHomePage();
+//         }
+//         else {
+//           Get.snackbar(
+//               'Registro fallido', responseApi.message ?? 'Error al registrar',
+//               colorText: Colors.white, backgroundColor: Colors.red);
+//         }
+        
+//       });

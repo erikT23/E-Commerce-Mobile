@@ -65,7 +65,7 @@ class User {
         role: json["role"].toString(),
         buyerProfile: json["buyerProfile"],
         sellerProfile: json["sellerProfile"],
-        courierProfile: json["courierProfile"],
+        courierProfile: json["courierProfile"].toString(),
         paymentMethod: json["paymentMethod"],
         profileimage: json["profileimage"],
         reviews: json["Reviews"],

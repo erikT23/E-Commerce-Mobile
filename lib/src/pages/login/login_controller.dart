@@ -30,8 +30,7 @@ class LoginController extends GetxController {
         GetStorage().write(
             'user', responseApi.data); // Guardar el usuario en el local storage
         GoToHomePage();
-        // Get.snackbar('Login correcto', responseApi.message ?? 'Login correcto',
-        //     colorText: Colors.white, backgroundColor: Colors.green);
+        
       } else {
         Get.snackbar(
             'Login fallido', responseApi.message ?? 'Error al iniciar sesión',
