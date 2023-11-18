@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
-            onPressed: () => homeController.LogOut(),
+            onPressed: () => homeController.logOut(),
             child: const Text(
               'Cerrar sesión',
               style: TextStyle(color: Colors.white),
