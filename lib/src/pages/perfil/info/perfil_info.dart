@@ -13,7 +13,6 @@ class PerfilInfoPage extends StatelessWidget {
         children: [
           _backgroundCover(context),
           _boxForm(context),
-          _buttonUpdate(context),
           _imageUser(context),
         ],
       ),
@@ -52,7 +51,12 @@ class PerfilInfoPage extends StatelessWidget {
             )
           ]),
       child: Column(
-        children: [_textIngresarInfo(), _buttonUpdate(context)],
+        children: [
+          _textName(),
+          _textEmail(),
+          _textPhone(),
+          _buttonUpdate(context)
+        ],
       ),
     );
   }
@@ -65,9 +69,8 @@ class PerfilInfoPage extends StatelessWidget {
         onPressed: () => {},
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
         child: const Text('Actualizar Datos',
             style: TextStyle(color: Colors.black, fontSize: 17)),
@@ -75,17 +78,75 @@ class PerfilInfoPage extends StatelessWidget {
     );
   }
 
-  Widget _textIngresarInfo() {
+  Widget _textName() {
     return Container(
-      margin: const EdgeInsets.only(top: 20),
-      child: const Text(
-        'Registrarse',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      margin: const EdgeInsets.all(20),
+      child: ListTile(
+          leading: const Icon(
+            Icons.person,
+          ),
+          title: Text(
+            '${con.user.name ?? ''}',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 21,
+            ),
+          ),
+          subtitle: const Text(
+            'Nombre',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+            ),
+          )),
+    );
+  }
+
+  Widget _textEmail() {
+    return Container(
+      margin: const EdgeInsets.all(20),
+      child: ListTile(
+          leading: const Icon(
+            Icons.email,
+          ),
+          title: Text(
+            '${con.user.email ?? ''}',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 21,
+            ),
+          ),
+          subtitle: const Text(
+            'Email',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+            ),
+          )),
+    );
+  }
+
+  Widget _textPhone() {
+    return Container(
+      margin: const EdgeInsets.all(20),
+      child: ListTile(
+          leading: const Icon(
+            Icons.phone,
+          ),
+          title: Text(
+            '${con.user.phoneNumber ?? ''}',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 21,
+            ),
+          ),
+          subtitle: const Text(
+            'Teléfono',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+            ),
+          )),
     );
   }
 

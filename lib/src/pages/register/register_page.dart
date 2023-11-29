@@ -74,7 +74,6 @@ class RegisterPage extends StatelessWidget {
             _textFieldPhone(),
             _textFielPassword(),
             _textFielConfirmPassword(),
-            _buttonRegister(context)
           ],
         ),
       ),

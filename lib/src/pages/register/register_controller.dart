@@ -31,9 +31,8 @@ class RegisterController extends GetxController {
     print('Password: $password');
 
     if (isValidForm(email, name, lastname, phone, password, confirmPassword)) {
-
       ProgressDialog progressDialog = ProgressDialog(context: context);
-      progressDialog.show(max: 400, msg: '🔧Creando usuario...');
+      progressDialog.show(max: 700, msg: '🔧Creando usuario...');
 
       User user = User(
         name: name,
@@ -46,17 +45,15 @@ class RegisterController extends GetxController {
       Response response = await usersProviders.create(user);
       print('Response ${response.body}');
 
-      if(response.isOk){
+      if (response.isOk) {
         progressDialog.close();
         Get.snackbar('Formulario valido', 'El formulario es valido',
-          colorText: Colors.white, backgroundColor: Colors.green);
-      }
-      else{
+            colorText: Colors.white, backgroundColor: Colors.green);
+      } else {
         progressDialog.close();
         Get.snackbar('Formulario no valido', 'El formulario no es valido',
-          colorText: Colors.white, backgroundColor: Colors.red);
+            colorText: Colors.white, backgroundColor: Colors.red);
       }
-      
     }
   }
 
