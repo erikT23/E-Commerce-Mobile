@@ -52,6 +52,7 @@ class RegisterController extends GetxController {
           colorText: Colors.white, backgroundColor: Colors.green);
       }
       else{
+        progressDialog.close();
         Get.snackbar('Formulario no valido', 'El formulario no es valido',
           colorText: Colors.white, backgroundColor: Colors.red);
       }

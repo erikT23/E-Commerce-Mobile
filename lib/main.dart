@@ -1,6 +1,7 @@
 import 'package:ecomerce_mobile/src/models/user.dart';
 import 'package:ecomerce_mobile/src/pages/home/home_page.dart';
 import 'package:ecomerce_mobile/src/pages/login/login_page.dart';
+import 'package:ecomerce_mobile/src/pages/perfil/info/perfil_info.dart';
 import 'package:ecomerce_mobile/src/pages/register/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +38,8 @@ class _MainAppState extends State<MainApp> {
       getPages: [
         GetPage(name: '/', page: () => LoginPage()),
         GetPage(name: '/register', page: () => RegisterPage()),
-        GetPage(name: '/home', page: () => HomePage())
+        GetPage(name: '/home', page: () => HomePage()),
+        GetPage(name: '/perfil/info', page: () => PerfilInfoPage()),
       ],
       theme: ThemeData(
           primaryColor: Colors.amber,

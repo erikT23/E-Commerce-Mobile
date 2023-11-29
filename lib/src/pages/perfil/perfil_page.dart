@@ -7,7 +7,7 @@ class PerfilPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Perfil'),
+        child: Text('Pefil page'),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:ecomerce_mobile/src/pages/categorias/categorias_page.dart';
 import 'package:ecomerce_mobile/src/pages/home/home_controller.dart';
 import 'package:ecomerce_mobile/src/pages/inicio/inicio_page.dart';
+import 'package:ecomerce_mobile/src/pages/perfil/info/perfil_info.dart';
 import 'package:ecomerce_mobile/src/pages/perfil/perfil_page.dart';
 import 'package:ecomerce_mobile/src/pages/wishlist/wishlist_page.dart';
 import 'package:ecomerce_mobile/src/utils/custom_animated_bottom_bar.dart';
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget {
               InicioPage(),
               WishlistPage(),
               CategoriasPage(),
-              PerfilPage(),
+              PerfilInfoPage(),
             ],
           ),
         ));
