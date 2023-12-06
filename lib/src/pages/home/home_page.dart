@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
             ),
             BottomNavyBarItem(
               icon: Icon(Icons.apps),
-              title: Text('Categorias'),
+              title: Text('Productos'),
               activeColor: Colors.white,
               inactiveColor: Colors.black,
             ),
