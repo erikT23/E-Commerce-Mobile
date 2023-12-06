@@ -17,7 +17,6 @@ class User {
   String? password;
   String? profilePicture;
   String? roleId;
-  String? role;
   String? buyerProfile;
   String? sellerProfile;
   String? courierProfile;
@@ -39,7 +38,6 @@ class User {
     this.password,
     this.profilePicture,
     this.roleId,
-    this.role,
     this.buyerProfile,
     this.sellerProfile,
     this.courierProfile,
@@ -62,7 +60,6 @@ class User {
         password: json["password"],
         profilePicture: json["profilePicture"],
         roleId: json["roleId"].toString(),
-        role: json["role"].toString(),
         buyerProfile: json["buyerProfile"],
         sellerProfile: json["sellerProfile"],
         courierProfile: json["courierProfile"].toString(),
@@ -85,7 +82,6 @@ class User {
         "password": password,
         "profilePicture": profilePicture,
         "roleId": roleId,
-        "role": role,
         "buyerProfile": buyerProfile,
         "sellerProfile": sellerProfile,
         "courierProfile": courierProfile,

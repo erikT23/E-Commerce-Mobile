@@ -6,4 +6,13 @@ import 'package:get_storage/get_storage.dart';
 class PerfilInfoController extends GetxController {
   
   User user = User.fromJson(GetStorage().read('user'));
+
+  void logOut(){
+    GetStorage().remove('user');
+    Get.offNamedUntil('/', (route) => false);
+  }
+
+  void goToUpdate(){
+    Get.toNamed('/perfil/update');
+  }
 }

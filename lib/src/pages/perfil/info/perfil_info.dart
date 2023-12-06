@@ -14,6 +14,7 @@ class PerfilInfoPage extends StatelessWidget {
           _backgroundCover(context),
           _boxForm(context),
           _imageUser(context),
+          _buttonLogOut()
         ],
       ),
     );
@@ -55,8 +56,21 @@ class PerfilInfoPage extends StatelessWidget {
           _textName(),
           _textEmail(),
           _textPhone(),
-          _buttonUpdate(context)
+          _buttonUpdate(context),
         ],
+      ),
+    );
+  }
+
+  Widget _buttonLogOut() {
+    return SafeArea(
+      child: Container(
+        alignment: Alignment.topRight,
+        margin: const EdgeInsets.only(top: 20, right: 20),
+        child: IconButton(
+          icon: const Icon(Icons.power_settings_new, color: Colors.white),
+          onPressed: () => con.logOut(),
+        ),
       ),
     );
   }
@@ -66,7 +80,7 @@ class PerfilInfoPage extends StatelessWidget {
       width: double.infinity,
       margin: const EdgeInsets.only(left: 20, right: 20),
       child: ElevatedButton(
-        onPressed: () => {},
+        onPressed: () => con.goToUpdate(),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
           shape:

@@ -1,10 +1,11 @@
-import 'package:ecomerce_mobile/src/pages/register/register_controller.dart';
+import 'package:ecomerce_mobile/src/pages/perfil/update/perfil_update_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-class RegisterPage extends StatelessWidget {
-  RegisterController registerController = Get.put(RegisterController());
+class PerfilUpdatePage extends StatelessWidget {
+  PerfilUpdateController con = Get.put(PerfilUpdateController());
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,8 @@ class RegisterPage extends StatelessWidget {
         children: [
           _backgroundCover(context),
           _boxForm(context),
-          _imageUser(context),
           _buttonBack(),
-          _buttonRegister(context),
+          _imageUser(context)
         ],
       ),
     );
@@ -68,28 +68,11 @@ class RegisterPage extends StatelessWidget {
         child: Column(
           children: [
             _textIngresarInfo(),
-            _textFieldEmail(),
             _textFieldName(),
             _textFieldLastName(),
             _textFieldPhone(),
-            _textFielPassword(),
-            _textFielConfirmPassword(),
+            _buttonUpdate(context),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _textFieldEmail() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: TextField(
-        controller: registerController.emailController,
-        keyboardType: TextInputType.emailAddress,
-        decoration: const InputDecoration(
-          hintText: 'Correo electrónico',
-          labelText: 'Correo electrónico',
-          suffixIcon: Icon(Icons.email_outlined),
         ),
       ),
     );
@@ -99,10 +82,10 @@ class RegisterPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextField(
-        controller: registerController.nameController,
+        controller: con.nameController,
         keyboardType: TextInputType.text,
         decoration: const InputDecoration(
-          hintText: 'Nombre completo',
+          hintText: 'Nombre completos',
           labelText: 'Nombre completo',
           suffixIcon: Icon(Icons.person),
         ),
@@ -114,7 +97,7 @@ class RegisterPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextField(
-        controller: registerController.lastnameController,
+        controller: con.lastnameController,
         keyboardType: TextInputType.text,
         decoration: const InputDecoration(
           hintText: 'Apellidos',
@@ -129,7 +112,7 @@ class RegisterPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextField(
-        controller: registerController.phoneController,
+        controller: con.phoneController,
         keyboardType: TextInputType.number,
         decoration: const InputDecoration(
           hintText: 'Teléfono',
@@ -140,49 +123,18 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Widget _textFielPassword() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: TextField(
-        controller: registerController.passwordController,
-        obscureText: true,
-        decoration: const InputDecoration(
-          hintText: 'Contraseña',
-          labelText: 'Contraseña',
-          suffixIcon: Icon(Icons.lock),
-        ),
-      ),
-    );
-  }
-
-  Widget _textFielConfirmPassword() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: TextField(
-        controller: registerController.confirmPasswordController,
-        obscureText: true,
-        decoration: const InputDecoration(
-          hintText: 'Confirmar contraseña',
-          labelText: 'Confirmar Contraseña',
-          suffixIcon: Icon(Icons.lock_outline_rounded),
-        ),
-      ),
-    );
-  }
-
-  Widget _buttonRegister(BuildContext context) {
+  Widget _buttonUpdate(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(top: 680, left: 20, right: 20),
+      margin: const EdgeInsets.only(left: 20, right: 20),
       child: ElevatedButton(
-        onPressed: () => registerController.register(context),
+        onPressed: () => con.updateInfo(context),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
-        child: const Text('Registrarse',
+        child: const Text('Actualizar Datos',
             style: TextStyle(color: Colors.black, fontSize: 17)),
       ),
     );
@@ -207,19 +159,15 @@ class RegisterPage extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: 20),
         alignment: Alignment.topCenter,
-        child: GestureDetector(
-            onTap: () => registerController.showAlertDialog(context),
-            child: GetBuilder<RegisterController>(
-              builder: (value) => CircleAvatar(
-                backgroundImage: registerController.imageFile != null
-                    ? FileImage(registerController.imageFile!)
-                    : const AssetImage(
-                        'assets/img/register.png',
-                      ) as ImageProvider,
-                radius: 60,
-                backgroundColor: Colors.white,
-              ),
-            )),
+        child: const CircleAvatar(
+          child: Icon(
+            Icons.person,
+            color: Colors.black,
+            size: 90.0,
+          ),
+          radius: 60,
+          backgroundColor: Colors.white,
+        ),
       ),
     );
   }
