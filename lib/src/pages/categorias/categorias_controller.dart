@@ -33,19 +33,16 @@ class CategoriasController extends GetxController {
   final RxList<dynamic> products = RxList<dynamic>();
   final RxList<dynamic> productsByCategory = RxList<dynamic>();
 
-  Future<void> loadProducts({String? search, int? category}) async {
+  void loadProducts({int? category}) async {
     // Construye los parámetros de la solicitud
     Map<String, dynamic> queryParams = {};
-    if (search != null && search.isNotEmpty) {
-      queryParams['search'] = search;
-    }
     if (category != null) {
       queryParams['category'] = category;
     }
-
     // Realiza la solicitud a la API
     try {
-      Response response = await productsProvider.getProducts(queryParams);
+      Response response = await productsProvider.findProducts(queryParams);
+      update();
       if (response.statusCode == 200) {
         var responseData = response.body['data'];
         if (responseData != null &&

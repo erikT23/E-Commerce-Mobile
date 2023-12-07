@@ -17,14 +17,14 @@ class ProductsProvider extends GetConnect {
     return response;
   }
 
-  Future<Response> findProducts({
-    String? query,
-    int? category,
-    int page = 1,
-    int limit = 9,
-  }) async {
-    final response =
-        await get('$url/search/$query/$category?page=$page&limit=$limit');
+  Future<Response> findProducts(queryParams) async {
+    if (queryParams.isNotEmpty) {
+      url += '?';
+      queryParams.forEach((key, value) {
+        url += '$key=$value&';
+      });
+    }
+    final response = await get('$url?page=1&limit=9');
     return response;
   }
 }

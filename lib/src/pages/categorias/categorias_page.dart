@@ -11,35 +11,40 @@ class CategoriasPage extends StatelessWidget {
     return DefaultTabController(
       length: controller.categories.length,
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: AppBar(
-            bottom: TabBar(
-              isScrollable: true,
-              indicatorColor: Colors.amber,
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.white.withOpacity(0.5),
-              tabs: controller.categories.map((category) {
-                return Tab(
-                  text: category['name'],
-                );
-              }).toList(),
+          appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(50),
+            child: AppBar(
+              bottom: TabBar(
+                isScrollable: true,
+                indicatorColor: Colors.amber,
+                labelColor: Colors.white,
+                unselectedLabelColor: Colors.white.withOpacity(0.5),
+                tabs: controller.categories.map((category) {
+                  return Tab(
+                    text: category['name'],
+                  );
+                }).toList(),
+              ),
             ),
           ),
-        ),
-        body: TabBarView(
-          children: controller.categories.map((category) {
-            return ListView.builder(
-              itemCount: controller.products.length,
-              itemBuilder: (BuildContext context, int index) {
-                return CardProductos(
-                    product: controller.loadProducts(
-                        search: '', category: category['id']));
-              },
-            );
-          }).toList(),
-        ),
-      ),
+          body: TabBarView(
+            children: controller.categories.map((category) {
+              return GetBuilder<CategoriasController>(
+                init: controller,
+                builder: (_) {
+                  // Carga los productos cuando cambia la categoría
+                  controller.loadProducts(category: category['id']);
+
+                  return ListView.builder(
+                    itemCount: controller.products.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CardProductos(product: controller.products[index]);
+                    },
+                  );
+                },
+              );
+            }).toList(),
+          )),
     );
   }
 }
