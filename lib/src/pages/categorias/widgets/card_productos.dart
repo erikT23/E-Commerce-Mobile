@@ -23,7 +23,7 @@ class CardProductos extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Text('Precio: ${product['price']}'),
+            Text('Precio: \$${product['price']}'),
             const SizedBox(height: 10),
             product['Images'] != null && product['Images'].isNotEmpty
                 ? Image.network(product['Images'][0]['url'], fit: BoxFit.cover)
