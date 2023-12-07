@@ -29,13 +29,11 @@ class CategoriasPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: controller.categories.map((category) {
-            return Container(
-              child: ListView.builder(
-                itemCount: controller.products.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return CardProductos(product: controller.products[index]);
-                },
-              ),
+            return ListView.builder(
+              itemCount: controller.products.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CardProductos(product: controller.products[index]);
+              },
             );
           }).toList(),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CardProductos extends StatelessWidget {
-  final dynamic product; 
+  final dynamic product;
 
   CardProductos({required this.product});
 
@@ -23,7 +23,7 @@ class CardProductos extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Text('Precio: ${product['price']}'),
+            Text('Precio: \$${product['price']}'),
             SizedBox(height: 10),
             product['Images'] != null && product['Images'].isNotEmpty
                 ? Image.network(product['Images'][0]['url'], fit: BoxFit.cover)
