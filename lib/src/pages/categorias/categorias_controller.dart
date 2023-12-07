@@ -7,41 +7,59 @@ class CategoriasController extends GetxController {
   final ProductsProvider productsProvider = ProductsProvider();
   final RxList<dynamic> categories = RxList<dynamic>();
 
- void loadCategories() async {
-  Response response = await categoriesProvider.getCategories();
-  if (response.statusCode == 200) {
-    var responseData = response.body['data'];
-    if (responseData != null && responseData is Map && responseData['categories'] is List) {
-      categories.value = responseData['categories'];
-    } else {
-      print('Error: La estructura de la respuesta no es la esperada');
-    }
-  } else {
-    print('Error al obtener categorías: ${response.statusCode}');
-  }
-}
-
-  @override
-  void onInit() {
-    super.onInit();
-    loadCategories(); 
-    loadProducts();
-  }
-
-  final RxList<dynamic> products = RxList<dynamic>();
-
-  void loadProducts() async {
-    Response response = await productsProvider.getProducts();
+  void loadCategories() async {
+    Response response = await categoriesProvider.getCategories();
     if (response.statusCode == 200) {
       var responseData = response.body['data'];
-      if (responseData != null && responseData is Map && responseData['products'] is List) {
-        products.value = responseData['products'];
+      if (responseData != null &&
+          responseData is Map &&
+          responseData['categories'] is List) {
+        categories.value = responseData['categories'];
       } else {
         print('Error: La estructura de la respuesta no es la esperada');
       }
     } else {
-      print('Error al obtener productos: ${response.statusCode}');
+      print('Error al obtener categorías: ${response.statusCode}');
     }
   }
 
+  @override
+  void onInit() {
+    super.onInit();
+    loadCategories();
+    loadProducts();
+  }
+
+  final RxList<dynamic> products = RxList<dynamic>();
+  final RxList<dynamic> productsByCategory = RxList<dynamic>();
+
+  Future<void> loadProducts({String? search, int? category}) async {
+    // Construye los parámetros de la solicitud
+    Map<String, dynamic> queryParams = {};
+    if (search != null && search.isNotEmpty) {
+      queryParams['search'] = search;
+    }
+    if (category != null) {
+      queryParams['category'] = category;
+    }
+
+    // Realiza la solicitud a la API
+    try {
+      Response response = await productsProvider.getProducts(queryParams);
+      if (response.statusCode == 200) {
+        var responseData = response.body['data'];
+        if (responseData != null &&
+            responseData is Map &&
+            responseData['products'] is List) {
+          products.value = responseData['products'];
+        } else {
+          print('Error: La estructura de la respuesta no es la esperada');
+        }
+      } else {
+        print('Error al obtener productos: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error al realizar la solicitud: $e');
+    }
+  }
 }

@@ -10,4 +10,15 @@ class CategoriesProviders extends GetConnect {
     final response = await get('$url?page=$page&limit=$limit');
     return response;
   }
+
+  Future<Response> findProducts({
+    String? query,
+    int? category,
+    int page = 1,
+    int limit = 9,
+  }) async {
+    final response =
+        await get('$url/search/$query/$category?page=$page&limit=$limit');
+    return response;
+  }
 }
