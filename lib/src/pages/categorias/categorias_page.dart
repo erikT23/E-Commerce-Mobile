@@ -19,9 +19,11 @@ class CategoriasPage extends StatelessWidget {
                 indicatorColor: Colors.amber,
                 labelColor: Colors.white,
                 unselectedLabelColor: Colors.white.withOpacity(0.5),
-                tabs: controller.categories.map((category) {
+                tabs: controller.categories.asMap().entries.map((entry) {
+                  int idx = entry.key;
+                  var category = entry.value;
                   return Tab(
-                    text: category['name'],
+                    text: '${category['name']}',
                   );
                 }).toList(),
               ),
@@ -34,7 +36,6 @@ class CategoriasPage extends StatelessWidget {
                 builder: (_) {
                   // Carga los productos cuando cambia la categoría
                   controller.loadProducts(category: category['id']);
-
                   return ListView.builder(
                     itemCount: controller.products.length,
                     itemBuilder: (BuildContext context, int index) {

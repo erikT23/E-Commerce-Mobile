@@ -34,29 +34,22 @@ class CategoriasController extends GetxController {
   final RxList<dynamic> productsByCategory = RxList<dynamic>();
 
   void loadProducts({int? category}) async {
-    // Construye los parámetros de la solicitud
-    Map<String, dynamic> queryParams = {};
-    if (category != null) {
-      queryParams['category'] = category;
-    }
-    // Realiza la solicitud a la API
-    try {
-      Response response = await productsProvider.findProducts(queryParams);
-      update();
-      if (response.statusCode == 200) {
-        var responseData = response.body['data'];
-        if (responseData != null &&
-            responseData is Map &&
-            responseData['products'] is List) {
-          products.value = responseData['products'];
-        } else {
-          print('Error: La estructura de la respuesta no es la esperada');
-        }
+  try {
+    Response response = (await productsProvider.findProducts(category: category)) as Response;
+    if (response.statusCode == 200) {
+      var responseData = response.body['data'];
+      if (responseData != null && responseData['products'] is List) {
+        // Actualiza la lista de productos
+        products.value = List.from(responseData['products']);
       } else {
-        print('Error al obtener productos: ${response.statusCode}');
+        print('Error: La estructura de la respuesta no es la esperada');
       }
-    } catch (e) {
-      print('Error al realizar la solicitud: $e');
+    } else {
+      print('Error al obtener productos: ${response.statusCode}');
     }
+  } catch (e) {
+    print('Error al realizar la solicitud: $e');
   }
+}
+
 }
