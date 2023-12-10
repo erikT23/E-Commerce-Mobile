@@ -8,6 +8,7 @@ class CardProductos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Color.fromARGB(255, 255, 255, 255),
       elevation: 2.0,
       margin: const EdgeInsets.all(8.0),
       child: Padding(
@@ -20,10 +21,12 @@ class CardProductos extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
             const SizedBox(height: 10),
-            Text('Precio: \$${product['price']}'),
+            Text('Precio: \$${product['price']}',
+                style: const TextStyle(fontSize: 16.0, color: Colors.black)),
             const SizedBox(height: 10),
             product['Images'] != null && product['Images'].isNotEmpty
                 ? Image.network(product['Images'][0]['url'], fit: BoxFit.cover)

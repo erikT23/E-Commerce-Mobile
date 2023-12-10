@@ -27,7 +27,7 @@
     },
     {
       "name": "collection",
-      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.17.2",
+      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.18.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -83,7 +83,7 @@
       "name": "flutter",
       "rootUri": "file:///D:/Flutter/flutter_windows_3.13.4-stable/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "flutter_carousel_widget",
@@ -94,6 +94,12 @@
     {
       "name": "flutter_custom_clippers",
       "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_custom_clippers-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_image_slideshow",
+      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_image_slideshow-0.1.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -113,13 +119,13 @@
       "name": "flutter_test",
       "rootUri": "file:///D:/Flutter/flutter_windows_3.13.4-stable/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///D:/Flutter/flutter_windows_3.13.4-stable/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "get",
@@ -219,7 +225,7 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.9.1",
+      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.10.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -287,7 +293,7 @@
       "name": "sky_engine",
       "rootUri": "file:///D:/Flutter/flutter_windows_3.13.4-stable/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "sn_progress_dialog",
@@ -303,15 +309,15 @@
     },
     {
       "name": "stack_trace",
-      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.11.0",
+      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.11.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "stream_channel",
-      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.1",
+      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.2",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.19"
     },
     {
       "name": "string_scanner",
@@ -327,9 +333,9 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.6.0",
+      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.6.1",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "typed_data",
@@ -345,9 +351,9 @@
     },
     {
       "name": "web",
-      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.1.4-beta",
+      "rootUri": "file:///C:/Users/doran/AppData/Local/Pub/Cache/hosted/pub.dev/web-0.3.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.2"
     },
     {
       "name": "win32",
@@ -368,7 +374,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-12-07T05:22:12.455808Z",
+  "generated": "2023-12-10T06:12:18.030257Z",
   "generator": "pub",
-  "generatorVersion": "3.1.2"
+  "generatorVersion": "3.2.3"
 }

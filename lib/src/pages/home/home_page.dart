@@ -1,4 +1,4 @@
-import 'package:ecomerce_mobile/src/pages/categorias/categorias_page.dart';
+import 'package:ecomerce_mobile/src/pages/categorias/list/categorias_page.dart';
 import 'package:ecomerce_mobile/src/pages/home/home_controller.dart';
 import 'package:ecomerce_mobile/src/pages/inicio/inicio_page.dart';
 import 'package:ecomerce_mobile/src/pages/perfil/info/perfil_info.dart';
