@@ -69,6 +69,10 @@ class CategoriasController extends GetxController {
       print('Error: Invalid product index: $index');
     }
   }
+
+  void goToOrdersCreatePage() {
+    Get.toNamed('/orders/create');
+  }
 }
 
 

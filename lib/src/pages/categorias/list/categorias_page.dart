@@ -13,8 +13,18 @@ class CategoriasPage extends StatelessWidget {
         length: controller.categories.length,
         child: Scaffold(
             appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(50),
+              preferredSize: const Size.fromHeight(120),
               child: AppBar(
+                flexibleSpace: Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  alignment: Alignment.topCenter,
+                  child: Wrap(
+                    children: [
+                      _textFielSerch(context),
+                      _iconShoppingCart(),
+                    ],
+                  ),
+                ),
                 backgroundColor: Colors.black,
                 bottom: TabBar(
                   isScrollable: true,
@@ -48,8 +58,8 @@ class CategoriasPage extends StatelessWidget {
                         itemCount: controller.products.length,
                         itemBuilder: (BuildContext context, int index) {
                           return GestureDetector(
-                            onTap: () => controller.openButtomSheet(
-                                context, index),
+                            onTap: () =>
+                                controller.openButtomSheet(context, index),
                             child: CardProductos(
                                 product: controller.products[index]),
                           );
@@ -60,5 +70,46 @@ class CategoriasPage extends StatelessWidget {
                 );
               }).toList(),
             )));
+  }
+
+  Widget _iconShoppingCart() {
+    return SafeArea(
+      child: Container(
+        margin: const EdgeInsets.only(left: 10),
+        child: IconButton(
+          onPressed: () => controller.goToOrdersCreatePage(),
+          icon: Icon(
+            Icons.shopping_cart_outlined,
+            size: 30,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _textFielSerch(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.8,
+        child: TextField(
+          decoration: InputDecoration(
+            hintText: "Buscar",
+            hintStyle: TextStyle(color: Colors.grey),
+            prefixIcon: Icon(Icons.search, color: Colors.grey),
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding: EdgeInsets.all(8),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
