@@ -63,7 +63,7 @@ class OrdersCreatePage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () => controller.goToAddressList(),
                       child: Text(
                         'Confirmar pedido',
                         style: TextStyle(color: Colors.white),
@@ -109,7 +109,7 @@ class OrdersCreatePage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       child: Text(
-        '\$${product['price'] * product['quantity']}',
+        '\$${(product['price'] ?? 1) * (product['quantity'] ?? 0)}',
         style: const TextStyle(
             color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
       ),

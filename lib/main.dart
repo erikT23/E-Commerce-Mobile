@@ -1,4 +1,6 @@
 import 'package:ecomerce_mobile/src/models/user.dart';
+import 'package:ecomerce_mobile/src/pages/address/create/address_create_page.dart';
+import 'package:ecomerce_mobile/src/pages/address/list/address_list_page.dart';
 import 'package:ecomerce_mobile/src/pages/home/home_page.dart';
 import 'package:ecomerce_mobile/src/pages/login/login_page.dart';
 import 'package:ecomerce_mobile/src/pages/orders/create/orders_create_page.dart';
@@ -44,6 +46,9 @@ class _MainAppState extends State<MainApp> {
         GetPage(name: '/perfil/info', page: () => PerfilInfoPage()),
         GetPage(name: '/perfil/update', page: () => PerfilUpdatePage()),
         GetPage(name: '/orders/create', page: () => OrdersCreatePage()),
+        GetPage(name: '/address/create', page: () => AddressCreatePage()),
+        GetPage(name: '/address/list', page: () => AddressListPage()),
+
       ],
       theme: ThemeData(
           primaryColor: Colors.amber,

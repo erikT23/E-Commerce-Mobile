@@ -25,7 +25,9 @@ class OrdersCreateController extends GetxController {
   void getTotal() {
     total.value = 0.0;
     selectedProducts.forEach((product) {
-      total.value = total.value + (product['price'] * product['quantity']);
+      var price = product['price'] ?? 0;
+      var quantity = product['quantity'] ?? 0;
+      total.value = total.value + (price * quantity);
     });
   }
 
@@ -38,9 +40,16 @@ class OrdersCreateController extends GetxController {
   void addItem(Map<String, dynamic> product) {
     int index = selectedProducts.indexWhere((p) => p['id'] == product['id']);
 
-    selectedProducts.remove(product);
-    product['quantity'] = product['quantity'] + 1;
-    selectedProducts.insert(index, product);
+    if (index != -1) {
+      // El producto ya está en selectedProducts, así que lo actualizamos
+      selectedProducts[index]['quantity'] =
+          (selectedProducts[index]['quantity'] ?? 0)+1 ;
+    } else {
+      // El producto no está en selectedProducts, así que lo añadimos
+      product['quantity'] = 1;
+      selectedProducts.add(product);
+    }
+
     GetStorage().write('cart', selectedProducts);
     getTotal();
   }
@@ -56,7 +65,7 @@ class OrdersCreateController extends GetxController {
       getTotal();
     } else {
       Fluttertoast.showToast(
-          msg: "No se puede eliminar el producto",
+          msg: "Tienes que eliminarlo desde el botón de eliminar",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
@@ -64,5 +73,9 @@ class OrdersCreateController extends GetxController {
           textColor: Colors.white,
           fontSize: 16.0);
     }
+  }
+
+  void goToAddressList() {
+    Get.toNamed('/address/list');
   }
 }
