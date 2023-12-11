@@ -41,7 +41,7 @@ class PerfilUpdatePage extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.35,
-        color: Colors.amber.withOpacity(0.8),
+        color: Colors.black,
       ),
     );
   }

@@ -22,3 +22,28 @@ class CategoriesProviders extends GetConnect {
     return response;
   }
 }
+
+
+
+// class CategoriesProviders extends GetConnect {
+//   String url = Environment.API_URL + "categories";
+
+//   Future<Response> getCategories({int page = 1, int limit = 36}) async {
+//     final response = await get('$url?page=$page&limit=$limit');
+//     return response;
+//   }
+
+// Future<Response> findProducts({Map<String, dynamic> queryParams = const {}}) async {
+//   String urlWithParams = url;
+//   if (queryParams.isNotEmpty) {
+//     urlWithParams += '?';
+//     queryParams.forEach((key, value) {
+//       urlWithParams += '$key=$value&';
+//     });
+//   }
+//   urlWithParams += 'page=1&limit=9';
+//   final response = await get(urlWithParams);
+//   return response;
+// }
+// }
+

@@ -5,14 +5,17 @@ import 'package:get/get.dart';
 
 class CategoriasDetailsPage extends StatelessWidget {
   final dynamic product;
-  final CategoriasDetailsController controller; // Declarar el controlador aquí
+  final CategoriasDetailsController controller;
+  var counter = 0.obs;
+  var price = 0.0.obs;
 
   CategoriasDetailsPage({@required this.product})
-      : controller = Get.put(CategoriasDetailsController(
-            product)); // Inicializar el controlador aquí
+      : controller = Get.put(CategoriasDetailsController());
 
   @override
   Widget build(BuildContext context) {
+
+    controller.checkProduct(product, price, counter);
     return Obx(() => Scaffold(
             body: Column(
           children: [
@@ -71,7 +74,7 @@ class CategoriasDetailsPage extends StatelessWidget {
       child: Row(
         children: [
           ElevatedButton(
-            onPressed: () => controller.removeItem(),
+            onPressed: () => controller.removeItem(product, price, counter),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
               shape: const RoundedRectangleBorder(
@@ -96,12 +99,12 @@ class CategoriasDetailsPage extends StatelessWidget {
               minimumSize: const Size(40, 37),
             ),
             child: Text(
-              '${controller.counter.value}',
+              '${counter.value}',
               style: const TextStyle(color: Colors.black, fontSize: 22),
             ),
           ),
           ElevatedButton(
-            onPressed: () => controller.addItem(),
+            onPressed: () => controller.addItem(product, price, counter),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
               shape: const RoundedRectangleBorder(
@@ -117,7 +120,7 @@ class CategoriasDetailsPage extends StatelessWidget {
           ),
           const Spacer(),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () => controller.addToCart(product,  price,  counter),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.amber,
               shape: RoundedRectangleBorder(
@@ -127,7 +130,7 @@ class CategoriasDetailsPage extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  '\$${controller.price.value}',
+                  '\$${price.value}',
                   style: TextStyle(color: Colors.black),
                 )
               ],
