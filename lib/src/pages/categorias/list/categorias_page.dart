@@ -87,6 +87,8 @@ class CategoriasPage extends StatelessWidget {
     );
   }
 
+  
+
   Widget _textFielSerch(BuildContext context) {
     return SafeArea(
       child: Container(

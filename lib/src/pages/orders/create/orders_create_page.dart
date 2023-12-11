@@ -8,7 +8,11 @@ class OrdersCreatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
+        bottomNavigationBar: Container(
+          height: 100,
+          child: _totalToPay(),
+        ),
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.white),
           title: const Text(
@@ -25,7 +29,52 @@ class OrdersCreatePage extends StatelessWidget {
               )
             : NoDataWidget(
                 text: 'No hay productos seleccionados',
-              ));
+              )));
+  }
+
+  Widget _totalToPay() {
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Divider(
+                  height: 3,
+                  color: Colors.grey[300],
+                ),
+                Text(
+                  'Total a pagar: ${controller.total.value}',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 60),
+                  width: 170,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.amber,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'Confirmar pedido',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _imgProduct(Map<String, dynamic> product) {
@@ -46,10 +95,31 @@ class OrdersCreatePage extends StatelessWidget {
     );
   }
 
+  Widget _iconDelete(Map<String, dynamic> product) {
+    return IconButton(
+        onPressed: () => controller.deleteItem(product),
+        icon: const Icon(
+          Icons.delete,
+          color: Colors.red,
+          size: 20,
+        ));
+  }
+
+  Widget _textPrice(Map<String, dynamic> product) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10),
+      child: Text(
+        '\$${product['price'] * product['quantity']}',
+        style: const TextStyle(
+            color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
   Widget _buttomsAddRemove(Map<String, dynamic> product) {
     return Row(children: [
       GestureDetector(
-        onTap: () {},
+        onTap: () => controller.removeItem(product),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
           decoration: BoxDecoration(
@@ -74,7 +144,7 @@ class OrdersCreatePage extends StatelessWidget {
         ),
       ),
       GestureDetector(
-        onTap: () {},
+        onTap: () => controller.addItem(product),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
           decoration: BoxDecoration(
@@ -118,10 +188,16 @@ class OrdersCreatePage extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                
                 Flexible(child: _buttomsAddRemove(product)),
               ],
             ),
+            const Spacer(),
+            Column(
+              children: [
+                _textPrice(product),
+                _iconDelete(product),
+              ],
+            )
           ],
         ),
       ),
