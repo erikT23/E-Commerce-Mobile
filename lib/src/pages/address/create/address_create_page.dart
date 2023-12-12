@@ -13,6 +13,7 @@ class AddressCreatePage extends StatelessWidget {
           _backgroundCover(context),
           _boxForm(context),
           _textNewAddress(),
+          _iconBack(context),
         ],
       ),
     );
@@ -53,9 +54,24 @@ class AddressCreatePage extends StatelessWidget {
         children: [
           _textFieldAddress(),
           _textFieldCity(),
-          _textFieldRefPoint(),
+          _textFieldRefPoint(context),
+          SizedBox(
+            height: 40,
+          ),
           _buttonAddAddress(context),
         ],
+      ),
+    );
+  }
+
+  Widget _iconBack(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        margin: const EdgeInsets.only(top: 10, left: 10),
+        child: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          onPressed: () => Get.back(),
+        ),
       ),
     );
   }
@@ -90,11 +106,14 @@ class AddressCreatePage extends StatelessWidget {
     );
   }
 
-  Widget _textFieldRefPoint() {
+  Widget _textFieldRefPoint(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextField(
+        onTap: () => con.openGoogleMaps(context),
         controller: con.refPointController,
+        autofocus: false,
+        focusNode: AlwaysDisabledFocusNode(),
         keyboardType: TextInputType.text,
         decoration: const InputDecoration(
           hintText: 'Punto de referencia',
@@ -131,7 +150,7 @@ class AddressCreatePage extends StatelessWidget {
       width: double.infinity,
       margin: const EdgeInsets.only(left: 20, right: 20),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => con.createAddress(),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
           shape:
@@ -142,4 +161,10 @@ class AddressCreatePage extends StatelessWidget {
       ),
     );
   }
+}
+
+
+class AlwaysDisabledFocusNode extends FocusNode {
+  @override
+  bool get hasFocus => false;
 }
