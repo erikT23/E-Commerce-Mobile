@@ -50,16 +50,16 @@ class AddressCreatePage extends StatelessWidget {
               offset: Offset(0.0, 7.5),
             )
           ]),
-      child: Column(
-        children: [
-          _textFieldAddress(),
-          _textFieldCity(),
-          _textFieldRefPoint(context),
-          SizedBox(
-            height: 40,
-          ),
-          _buttonAddAddress(context),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _textFieldAddress(),
+            _textFieldCity(),
+            _textFieldRefPoint(context),
+            SizedBox(height: 20),
+            _buttonAddAddress(context),
+          ],
+        ),
       ),
     );
   }
@@ -162,7 +162,6 @@ class AddressCreatePage extends StatelessWidget {
     );
   }
 }
-
 
 class AlwaysDisabledFocusNode extends FocusNode {
   @override
