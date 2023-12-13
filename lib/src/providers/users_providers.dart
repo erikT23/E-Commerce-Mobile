@@ -12,8 +12,14 @@ import 'package:path/path.dart';
 class UsersProviders extends GetConnect {
   String url = Environment.API_URL + "auth";
   String urlUpdate = Environment.API_URL;
-  User currentUser = User.fromJson(GetStorage().read('user'));
+  User? currentUser;
 
+  UsersProviders() {
+    var userData = GetStorage().read('user');
+    if (userData != null) {
+      currentUser = User.fromJson(userData);
+    }
+  }
 
   Future<Response> create(User user) async {
     var payload = {'user': user.toJson(), 'role': 3};

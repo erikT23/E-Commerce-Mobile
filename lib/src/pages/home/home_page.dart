@@ -19,7 +19,6 @@ class HomePage extends StatelessWidget {
             index: homeController.indexTab.value,
             children: [
               InicioPage(),
-              WishlistPage(),
               CategoriasPage(),
               PerfilInfoPage(),
             ],
@@ -40,12 +39,6 @@ class HomePage extends StatelessWidget {
             BottomNavyBarItem(
               icon: Icon(Icons.home),
               title: Text('Inicio'),
-              activeColor: Colors.white,
-              inactiveColor: Colors.black,
-            ),
-            BottomNavyBarItem(
-              icon: Icon(Icons.favorite),
-              title: Text('Wishlist'),
               activeColor: Colors.white,
               inactiveColor: Colors.black,
             ),
